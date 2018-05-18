@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import Header from './Header';
 import Form from './Form';
 import Footer from './Footer';
+import ToDoNow from './ToDoNow'
+import ToDoSometime from './ToDoSometime'
+import CompletedToDo from './CompletedToDo'
 import firebase from "firebase";
 
 // Initialize Firebase
@@ -27,8 +30,7 @@ class App extends React.Component {
       todos: [], //push all tasks
       toDoNows: [], // push tasks with counter 4 and 5 in here
       toDoSometimes: [], //push tasks with counter 3 and less in here
-      completedToDoNows: [],
-      completedToDoSometimes: []
+      completedToDos: [],
     };    
   }
 
@@ -46,58 +48,52 @@ class App extends React.Component {
 
         const toDoNows = 
           todos.filter((value) => {
-            return value.counter >= 4;
+            return value.counter >= 4 && value.completed !== true;
         });
 
         const toDoSometimes = todos.filter((value) => {
-          return value.counter <= 3;
-          });
-
-        const completedToDoNows = toDoNows.filter((toDoNow) => {
-          return toDoNow.completed === true;
+          return value.counter <= 3 && value.completed !== true;
         });
 
-        const completedToDoSometimes = toDoSometimes.filter((toDoSometime) => {
-          return toDoSometime.completed === true;
+        //just filter completed based on general todo array
+        const completedToDos = todos.filter((todo) => {
+          return todo.completed === true;
         });
-        
-        this.setState({
+
+        this.setState({         
           toDoNows: toDoNows,
-          toDoSometimes: toDoSometimes,
-          //this makes it such that it is printed twice on both sides completed and not completed....
-          completedToDoNows: completedToDoNows,
-          completedToDoSometimes: completedToDoSometimes
-        })
+          toDoSometimes: toDoSometimes, 
+          completedToDos: completedToDos,
+         })
       });
     }
-
-  
 
   // 5 LISTEN TO CHANGE IN SORT BUTTON
     // sort() toDoNows, toDoSometimes by time
     // set state
     // sort() toDoNows, toDoSometimes by counter
     // set state
+  sort(array){
+    array.sort();
+    this.setState();
+  }
 
   // 6 REMOVE TODO
   // create reference to db and also where we run the method
-  removeToDo(itemToRemove){
-    console.log(itemToRemove);
-    firebase.database().ref(`todos/${itemToRemove}`).remove()
+  removeToDo(key){
+    firebase.database().ref(`todos/${key}`).remove()
   }
 
-  // function to remove all items and reset states
-  // removeAll(){
-  //   this.setState({
-  //     completedToDoNows:'',
-  //     completedToDoSometimes: ''
-  //   })
-  // }
+  // function to remove all completed items
+  removeAll(){
+    const removeCompleted = this.state.completedToDos.forEach((itemsToRemove => {
+      this.removeToDo(itemsToRemove.key)
+    }))
+  }
   
   // 7 COMPLETED STUFF
   markAsComplete(itemComplete, completed){
-    console.log(itemComplete, completed)
-    firebase
+      firebase
       .database()
       .ref(`todos/${itemComplete}`)
       .update({ 
@@ -116,65 +112,60 @@ class App extends React.Component {
           <ul>
             {this.state.toDoNows.map(toDoNow => {
               return (
-              <li key={toDoNow.key}>
-                {toDoNow.task} - {toDoNow.counter}
-                <button onClick={() => this.markAsComplete(toDoNow.key)}>
-                  Done
-                </button>
-                <button onClick={() => this.removeToDo(toDoNow.key)}>
-                  Remove
-                </button>
-              </li>
-              )
-            })}
-          </ul>
-
-          <h2>Completed</h2>
-          <ul>
-            {this.state.completedToDoNows.map(toDoNow => {
-              return (
-              <li key={toDoNow.key}>
-                {toDoNow.task} - {toDoNow.counter}
-                <button onClick={() => this.removeToDo(toDoNow.key)}>
-                  Remove
-                </button>
-              </li>
+                <ToDoNow 
+                key={toDoNow.key}
+                task ={toDoNow.task}
+                counter={toDoNow.counter}
+                firebaseKey ={toDoNow.key} 
+                markAsComplete={this.markAsComplete}
+                removeToDo={this.removeToDo}
+                removeAll={this.removeAll}/>
               )
             })}
           </ul>
         </div>
-
+        
         {/* List to display toDoSometime*/}
         <div className="toDoSometime">
-          <h1>Do Sometime</h1>
+          <h1>Do Sometime
+            <button onClick={() => this.sort()}>Sort</button>
+          </h1>
           <ul>
             {this.state.toDoSometimes.map(toDoSometime => {
               return (
-              <li key={toDoSometime.key}>
-                  {toDoSometime.task} - {toDoSometime.counter}
-                  <button onClick={() => this.markAsComplete(toDoSometime.key)}>
-                    Done
-                  </button>
-                  <button onClick={() => this.removeToDo(toDoSometime.key)}>
-                    Remove
-                  </button>
-                </li>
-              )
-            })}
-          </ul>
-
-          <h2>Completed</h2>
-          <ul>
-            {this.state.completedToDoSometimes.map(toDoSometime => {
-              return (
-                <li key={toDoSometime.key}>
-                  {toDoSometime.task} - {toDoSometime.counter}
-                </li>
+                <ToDoSometime
+                  key={toDoSometime.key}
+                  task={toDoSometime.task}
+                  counter={toDoSometime.counter}
+                  firebaseKey={toDoSometime.key} 
+                  markAsComplete={this.markAsComplete}
+                  removeToDo={this.removeToDo}
+                  removeAll={this.removeAll} />
               )
             })}
           </ul>
         </div>
-        <Footer />
+
+      {/* List to display completedToDo*/}
+      <div className="completedToDo">
+        <h1>Completed
+          <button onClick={() => this.removeAll()}> Remove All </button>
+        </h1>
+        <ul>
+          {this.state.completedToDos.map(completedToDo => {
+            return (
+              <CompletedToDo
+                key={completedToDo.key}
+                task={completedToDo.task}
+                counter={completedToDo.counter}
+                firebaseKey={completedToDo.key}
+                removeToDo={this.removeToDo}
+                removeAll={this.removeAll}/>
+            )
+          })}
+        </ul>
+      </div>
+      <Footer />
       </div>;  
   }
 }
