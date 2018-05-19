@@ -28,13 +28,12 @@ class Form extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log(`submit`);
         // create variable with current state of things we want to keep track of in no.1
-        const time = new Date();
+    
         const todo = {
             task: this.state.task,
             counter: this.state.counter,
-            time: time.toString(),
+            inputTime: new Date().getTime(),
             completed: false
         }
         // ALSO PUSH TIME OF INPUT so that we can compare the now time vs. time of input later
