@@ -11,29 +11,29 @@ class TimeElapsed extends React.Component {
         this.timeElapsed = this.timeElapsed.bind(this);
     }
 
-    
 
-    // componentDidMount() {
-    //     const dbRef = firebase.database().ref('todos');
-    //     dbRef.on('value', (snapshot) => {
-    //         const data = snapshot.val()
-    //         console.log(data);
-    //         this.setState({
-    //             timeElapsed: data.inputTime
-    //         })
-    //     })
-    // }
-    
     timeElapsed(){
         const currentTime = new Date().getTime();
-        return currentTime - this.props.inputTime
-        // const difference
-    
+        const timeInMs = currentTime - this.props.inputTime;
+        const timeInSeconds = Math.floor(timeInMs / 1000);
+        const timeInMinutes = Math.floor(timeInSeconds / 60);
+        const timeInHours = Math.floor(timeInMinutes / 60);
+        const timeInDays = Math.floor(timeInHours / 24)
+        if (timeInSeconds < 60){
+            return timeInSeconds + ' second(s) ago'
+        } else if (timeInMinutes < 60) {
+            return timeInMinutes + ' minute(s) ago'
+        } else if (timeInHours < 24) {
+            return timeInHours + ' hour(s) ago' 
+        } else {
+            return timeInDays + ' day(s) ago'
+        }
     }
     
-    
     render() {
-        return <p>{this.timeElapsed()}</p>
+        return (
+        <p>Reminded to do this {this.timeElapsed()}</p>
+        )
     }
 }
     

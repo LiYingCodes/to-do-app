@@ -71,14 +71,14 @@ class App extends React.Component {
       });
     }
 
-  // 5 LISTEN TO CHANGE IN SORT BUTTON
+  // 5 SORT BUTTON
   handleSort(){
     this.setState({
       filter: !this.state.filter
     })
   }
 
-  // 6 REMOVE TODO
+  // 6 REMOVE TODOS
   // create reference to db and also where we run the method
   removeToDo(key){
     firebase.database().ref(`todos/${key}`).remove()
@@ -101,6 +101,10 @@ class App extends React.Component {
       });
   }
 
+  // CHANGING COUNTER TO DISPLAY ICON
+  
+
+  // RENDER FUNCTIONS
   defaultRender(array) {
     return(
       array.map(toDoNow => {
@@ -112,7 +116,7 @@ class App extends React.Component {
             firebaseKey={toDoNow.key}
             markAsComplete={this.markAsComplete}
             removeToDo={this.removeToDo}
-            removeAll={this.removeAll}
+            // removeAll={this.removeAll}
             inputTime={toDoNow.inputTime}
             filter={this.state.filter} />
         )
@@ -131,7 +135,7 @@ class App extends React.Component {
             firebaseKey={toDoNow.key}
             markAsComplete={this.markAsComplete}
             removeToDo={this.removeToDo}
-            removeAll={this.removeAll}
+            // removeAll={this.removeAll}
             inputTime={toDoNow.inputTime}
             filter={this.state.filter} />
         )
@@ -183,7 +187,11 @@ class App extends React.Component {
           <button onClick={() => this.removeAll()}> Remove All </button>
           <ul>
             {this.state.completedToDos.map(completedToDo => {
-              return <CompletedToDo key={completedToDo.key} task={completedToDo.task} counter={completedToDo.counter} />;
+              return (<CompletedToDo 
+                key={completedToDo.key} 
+                task={completedToDo.task} 
+                counter={completedToDo.counter} />
+              );
             })}
           </ul>
         </div>
