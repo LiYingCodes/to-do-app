@@ -103,21 +103,21 @@ class App extends React.Component {
   }
 
   // CHANGING COUNTER TO DISPLAY ICON
-  chores(counterNumber){
-      if (counterNumber === 1) {
+  chores(counter){
+      if (counter === 1) {
         return <div>o</div>
-      } else if (counterNumber === 2) {
-        return <div>oo</div>
-      } else if (counterNumber === 3) {
-        return <div>ooo</div>
-      } else if (counterNumber === 4) {
-        return <div>oooo</div>
-      } else if (counterNumber === 5) {
-        return <div>ooooo</div>
-      } else {
-        return
+        } else if (counter === 2) {
+            return <div>oo</div>
+        } else if (counter === 3) {
+            return <div>ooo</div>
+        } else if (counter === 4) {
+            return <div>oooo</div>;
+        } else if (counter === 5) {
+            return <div>ooooo</div>;
+        } else {
+            return;
       }
-  }
+    }
 
   // RENDER FUNCTIONS
   defaultRender(array) {
@@ -132,7 +132,6 @@ class App extends React.Component {
             firebaseKey={toDoNow.key}
             markAsComplete={this.markAsComplete}
             removeToDo={this.removeToDo}
-            // removeAll={this.removeAll}
             inputTime={toDoNow.inputTime}
             filter={this.state.filter} />
         )
@@ -152,7 +151,6 @@ class App extends React.Component {
             firebaseKey={toDoNow.key}
             markAsComplete={this.markAsComplete}
             removeToDo={this.removeToDo}
-            // removeAll={this.removeAll}
             inputTime={toDoNow.inputTime}
             filter={this.state.filter} />
         )
@@ -163,7 +161,8 @@ class App extends React.Component {
   render() {
     return <div>
         <Header />
-        <Form />
+        <Form 
+          chores={this.chores} />
 
         {/* List to display toDoNows */}
         <div className="toDoNow">
@@ -206,8 +205,7 @@ class App extends React.Component {
             {this.state.completedToDos.map(completedToDo => {
               return (<CompletedToDo 
                 key={completedToDo.key} 
-                task={completedToDo.task} 
-                counter={completedToDo.counter} />
+                task={completedToDo.task} />
               );
             })}
           </ul>

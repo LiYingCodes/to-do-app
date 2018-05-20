@@ -26,6 +26,7 @@ class Form extends React.Component {
         this.state.counter === 0 ? this.setState({ counter: this.state.counter - 0 }) : null;
     }
 
+
     handleSubmit(e) {
         e.preventDefault();
         // create variable with current state of things we want to keep track of in no.1
@@ -70,7 +71,8 @@ class Form extends React.Component {
                 <button className="btn-minus" counter={this.props.counter} onClick={this.handleClickMinus}>
                     Decrease
                 </button>
-                <p>Counter: {this.state.counter}</p>
+                <p> Counter: {this.props.chores(this.state.counter)} </p>
+                {/* <p>Counter: {this.state.counter}</p> */}
               <input type="submit" />
             </form>
           </div>;
