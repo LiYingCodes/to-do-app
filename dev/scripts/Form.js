@@ -62,20 +62,24 @@ class Form extends React.Component {
 
     render() {
         return <div>
-        {/* Form for getting todo task, user rating of importance of task and also time of input */}
-            <form action="" onSubmit={this.handleSubmit}>
-              <input type="text" value={this.state.task} onChange={this.handleChange} />
-                <button className="btn-plus" counter={this.props.counter} onClick={this.handleClickPlus}>
-                    Increase
-                </button>
-                <button className="btn-minus" counter={this.props.counter} onClick={this.handleClickMinus}>
-                    Decrease
-                </button>
-                <p> Counter: {this.props.chores(this.state.counter)} </p>
-                {/* <p>Counter: {this.state.counter}</p> */}
-              <input type="submit" />
-            </form>
-          </div>;
-    }
+            {/* Form for getting todo task, user rating of importance of task and also time of input */}
+        <form action="" onSubmit={this.handleSubmit}>
+            <div className="taskInput">
+                <h3>Add To Do:</h3>
+                <p>
+                    <input type="text" value={this.state.task} onChange={this.handleChange} placeholder="Input task here!"/>
+                </p>
+            </div>
+            <div className="importance">
+                <h3>Rate how important/urgent?</h3>
+                <div className="button-row">
+                    <button className="btn btn-minus" counter={this.props.counter} onClick={this.handleClickMinus}><i className="fas fa-minus"></i> </button>
+                    <span>{this.props.chores(this.state.counter)}</span>
+                    <button className="btn btn-plus" counter={this.props.counter} onClick={this.handleClickPlus}><i className="fas fa-plus"></i> </button>
+                </div>
+                    <input className="btn" type="submit" value="Add to list!" />
+            </div>
+        </form>
+    </div>}
 }
 export default Form;

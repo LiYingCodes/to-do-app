@@ -32,7 +32,7 @@ class TimeElapsed extends React.Component {
     
     render() {
         return (
-        <p>Reminded to do this {this.timeElapsed()}</p>
+        <p className="timestamp"><em>Added to list {this.timeElapsed()}.</em></p>
         )
     }
 }

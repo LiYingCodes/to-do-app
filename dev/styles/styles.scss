@@ -7,14 +7,155 @@ html{
 body{
     font-family: 'Domine', serif;
     font-size: 1.5rem;
-}
+    background: url("../../doodles.png");
 
-h1{
-    font-family: 'Permanent Marker', cursive;
-    font-size: 4rem;
 }
 
 .wrapper {
-    width: 1000px;
-    margin: 0 auto;
+    width: 750px;
+    margin: 1% auto;
+    padding: 1%;
+    border: 5px solid #1D976C;
+    background: #1D976C;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #93F9B9, #1D976C);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #93F9B9, #1D976C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+}
+
+form {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1%;
+    margin-bottom: 5%; 
+    width: 100%;
+    .taskInput{
+        width: 50%;
+        input[type=text]{
+            width: 95%;
+        }
+    }
+    .importance{
+        width: 50%;
+        justify-content: center;
+        .button-row{
+            justify-content: center;
+        }
+        input[type=submit] {
+            width: 95%;
+        }
+    }
+}
+
+ul{
+    list-style-type: none;
+    text-transform: capitalize;
+    padding: 0;
+}
+
+button {
+    background: none;
+    border: none;
+    margin: 3px;
+    border: 1px solid #1D976C;
+    transition: all 0.5s;
+    &:hover, 
+    &:focus{
+        background: #93F9B9;
+    }
+}
+.todo-container {
+    display: flex;
+    width: 100%;
+    margin-bottom: 5%;
+    .sub-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        button {
+            align-self: flex-start;
+        }
+    }
+    .task {
+        display: flex;
+        flex-direction:row;
+        justify-content: space-between;
+    }
+
+    .finish {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+    .now{
+        width: calc(50% - 1%);
+        padding: 2%;
+        border: 2px dashed #1D976C;
+        margin-right: 1%;
+        background: white;
+    }
+    .sometime{
+        width: calc(50% - 1%);
+        margin-left: 1%;
+        padding: 2%;
+        border: 2px dashed #1D976C;
+        background: white;
+    }
+}
+
+.completed {
+
+    padding: 2%;
+        border: 2px dashed #1D976C;
+
+}
+
+.clipboard {
+    display: inline-block;
+    img, span{
+        padding: 1px;
+    }
+}
+
+h1, h2, h3 {
+    font-family: 'Permanent Marker', cursive;
+    padding: 0;
+}
+
+h1 {
+    font-size: 6rem;
+}
+
+h2{
+    font-size: 4rem;
+}
+
+h3 {
+    font-size: 2rem;
+    display:inline-block;
+    border-bottom: 4px solid #1D976C;
+}
+
+
+button {
+    text-align: right;
+}
+
+.taskInput {
+    input[type=text] {
+        background: #93F9B9;
+        border: none;
+        border-bottom: 1px solid #1D976C;
+        &:focus, 
+        &:hover {
+            background: #93F9B9;
+            border-bottom: 1px solid black;
+        }
+    }
+}
+
+
+
+.timestamp {
+    text-align:right; 
+    color: #444;
+    font-size: 1rem; 
 }

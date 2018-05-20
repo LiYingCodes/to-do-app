@@ -105,17 +105,59 @@ class App extends React.Component {
   // CHANGING COUNTER TO DISPLAY ICON
   chores(counter){
       if (counter === 1) {
-        return <div>o</div>
+        return <div className="clipboard">
+            <img src="clipboard-b.png" />
+            <img src="clipboard-g.png" />
+            <img src="clipboard-g.png" />
+            <img src="clipboard-g.png" />
+            <img src="clipboard-g.png" />
+            <span>(1)</span>
+          </div>;
         } else if (counter === 2) {
-            return <div>oo</div>
+        return <div className="clipboard">
+            <img src="clipboard-b.png" />
+            <img src="clipboard-b.png" />
+            <img src="clipboard-g.png" />
+            <img src="clipboard-g.png" />
+            <img src="clipboard-g.png" />
+            <span>(2)</span>
+          </div>
         } else if (counter === 3) {
-            return <div>ooo</div>
+        return <div className="clipboard">
+            <img src="clipboard-b.png" />
+            <img src="clipboard-b.png" />
+            <img src="clipboard-b.png" />
+            <img src="clipboard-g.png" />
+            <img src="clipboard-g.png" />
+            <span>(3)</span>
+          </div>
         } else if (counter === 4) {
-            return <div>oooo</div>;
+        return <div className="clipboard">
+            <img src="clipboard-b.png" />
+            <img src="clipboard-b.png" />
+            <img src="clipboard-b.png" />
+            <img src="clipboard-b.png" />
+            <img src="clipboard-g.png" />
+            <span>(4)</span>
+          </div>;
         } else if (counter === 5) {
-            return <div>ooooo</div>;
+        return <div className="clipboard">
+            <img src="clipboard-b.png" />
+            <img src="clipboard-b.png" />
+            <img src="clipboard-b.png" />
+            <img src="clipboard-b.png" />
+            <img src="clipboard-b.png" />
+            <span>(5)</span>
+          </div>;
         } else {
-            return;
+        return <div className="clipboard">
+            <img src="clipboard-g.png" />
+            <img src="clipboard-g.png" />
+            <img src="clipboard-g.png" />
+            <img src="clipboard-g.png" />
+            <img src="clipboard-g.png" />
+            <span>(0)</span>
+          </div>;
       }
     }
 
@@ -165,41 +207,46 @@ class App extends React.Component {
           chores={this.chores} />
 
         {/* List to display toDoNows */}
-        <div className="toDoNow">
-          <h1>Do Now</h1>
-          {/* <Subheader title='donuts'/>
-          <Button click={this.handleSort} buttonTitle='do something'/> */}
-          {/* <Button click={this.sortRender} buttonTitle='do something' /> */}
-          <button onClick={() => {
-              this.handleSort();
-            }}>
-            Sort
-          </button>
-          <ul>
-            {this.state.filter
-              ? this.sortRender(this.state.toDoNows)
-              : this.defaultRender(this.state.toDoNows)}
-          </ul>
-        </div>
+        <div className="todo-container">
+          <div className="now">
+            <div className="sub-header">
+              <h2>Do Now</h2>
+              {/* <Subheader title='donuts'/>
+              <Button click={this.handleSort} buttonTitle='do something'/> */}
+              {/* <Button click={this.sortRender} buttonTitle='do something' /> */}
+              <button onClick={() => {
+                  this.handleSort();
+                }}>
+                Sort
+              </button>
+            </div>
+            <ul>
+              {this.state.filter
+                ? this.sortRender(this.state.toDoNows)
+                : this.defaultRender(this.state.toDoNows)}
+            </ul>
+          </div>
 
-        {/* List to display toDoSometime*/}
-        <div className="toDoSometime">
-          <h1>Do Sometime</h1>
-          <button onClick={() => {
-              this.handleSort();
-            }}>
-            Sort
-          </button>
-          <ul>
-            {this.state.filter
-              ? this.sortRender(this.state.toDoSometimes)
-              : this.defaultRender(this.state.toDoSometimes)}
-          </ul>
-        </div>
-
+          {/* List to display toDoSometime*/}
+          <div className="sometime">
+            <div className="sub-header">
+              <h2>Do Sometime</h2>
+              <button onClick={() => {
+                  this.handleSort();
+                }}>
+                Sort
+              </button>
+            </div>
+            <ul>
+              {this.state.filter
+                ? this.sortRender(this.state.toDoSometimes)
+                : this.defaultRender(this.state.toDoSometimes)}
+            </ul>
+          </div>
+      </div>
         {/* List to display completedToDo*/}
-        <div className="completedToDo">
-          <h1>Completed</h1>
+        <div className="completed">
+          <h2>Completed</h2>
           <button onClick={() => this.removeAll()}> Remove All </button>
           <ul>
             {this.state.completedToDos.map(completedToDo => {
