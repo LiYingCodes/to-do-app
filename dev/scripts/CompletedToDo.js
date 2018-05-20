@@ -3,7 +3,7 @@ import React from 'react'
 const CompletedToDo = (props) => {
     return (
         <li>
-            {props.task} - {props.counter}
+            {props.task}
         </li>
     )
 };

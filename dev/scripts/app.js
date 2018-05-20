@@ -35,6 +35,7 @@ class App extends React.Component {
     this.handleSort = this.handleSort.bind(this);
     this.defaultRender = this.defaultRender.bind(this);
     this.sortRender = this.sortRender.bind(this);    
+    this.chores = this.chores.bind(this)
   }
 
 // 2 SET UP FIREBASE
@@ -102,7 +103,21 @@ class App extends React.Component {
   }
 
   // CHANGING COUNTER TO DISPLAY ICON
-  
+  chores(counterNumber){
+      if (counterNumber === 1) {
+        return <div>o</div>
+      } else if (counterNumber === 2) {
+        return <div>oo</div>
+      } else if (counterNumber === 3) {
+        return <div>ooo</div>
+      } else if (counterNumber === 4) {
+        return <div>oooo</div>
+      } else if (counterNumber === 5) {
+        return <div>ooooo</div>
+      } else {
+        return
+      }
+  }
 
   // RENDER FUNCTIONS
   defaultRender(array) {
@@ -113,6 +128,7 @@ class App extends React.Component {
             key={toDoNow.key}
             task={toDoNow.task}
             counter={toDoNow.counter}
+            chores={this.chores}
             firebaseKey={toDoNow.key}
             markAsComplete={this.markAsComplete}
             removeToDo={this.removeToDo}
@@ -132,6 +148,7 @@ class App extends React.Component {
             key={toDoNow.key}
             task={toDoNow.task}
             counter={toDoNow.counter}
+            chores={this.chores}
             firebaseKey={toDoNow.key}
             markAsComplete={this.markAsComplete}
             removeToDo={this.removeToDo}
