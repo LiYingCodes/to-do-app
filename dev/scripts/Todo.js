@@ -6,11 +6,11 @@ import TimeElapsed from './TimeElapsed'
 const Todo = (props) => {
     console.log(props.counter);
     return <li>
-        <div className="task">
+        <div className="task flex">
           <span>{props.task}</span>
           <span>{props.chores(props.counter)}</span>
         </div>
-        <div className="finish">
+        <div className="finish flex">
           <button onClick={() => props.markAsComplete(props.firebaseKey)}>
             Done
           </button>

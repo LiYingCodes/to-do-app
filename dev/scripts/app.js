@@ -201,65 +201,56 @@ class App extends React.Component {
   }
 
   render() {
-    return <div>
-        <Header />
-        <Form 
-          chores={this.chores} />
+    return (
+    <div>
+      <div className="wrapper flex"> 
+      {/* wrapper container which contains form-chores-container, completed-container*/}
+        <div className="form-chores-container"> 
+        {/* contains: header,form,todo-container */}
+          <Header title="now or later" />
+          <Form chores={this.chores} />  
+          <div className="btn-sort flex">
+            <button className="btn-sort" onClick={() => {this.handleSort()}}> Sort </button>
+          </div> {/* end of btn-sort container */}
+          <div className="todo-container flex">
+            <div className="now">
+              <h2>Now:</h2>
+              <ul>
+                {this.state.filter
+                  ? this.sortRender(this.state.toDoNows)
+                  : this.defaultRender(this.state.toDoNows)}
+              </ul>
+            </div> {/* end of now */}
+    
+            <div className="sometime">
+              <h2>Sometime Later:</h2>
+              <ul>
+                {this.state.filter
+                  ? this.sortRender(this.state.toDoSometimes)
+                  : this.defaultRender(this.state.toDoSometimes)}
+              </ul>
+            </div>{/* end of sometime */}
+          </div> {/* end of todo-container */}
+        </div>{/* end of form-chores-container */}
 
-        {/* List to display toDoNows */}
-        <div className="todo-container">
-          <div className="now">
-            <div className="sub-header">
-              <h2>Do Now</h2>
-              {/* <Subheader title='donuts'/>
-              <Button click={this.handleSort} buttonTitle='do something'/> */}
-              {/* <Button click={this.sortRender} buttonTitle='do something' /> */}
-              <button onClick={() => {
-                  this.handleSort();
-                }}>
-                Sort
-              </button>
-            </div>
+        <div className="completed-container">  
+            <Header title="completed" />
+            <button onClick={() => this.removeAll()}> Remove All </button>
+          <div className="completed">
             <ul>
-              {this.state.filter
-                ? this.sortRender(this.state.toDoNows)
-                : this.defaultRender(this.state.toDoNows)}
+              {this.state.completedToDos.map(completedToDo => {
+                return (<CompletedToDo 
+                  key={completedToDo.key} 
+                  task={completedToDo.task} />
+                );
+              })}
             </ul>
-          </div>
-
-          {/* List to display toDoSometime*/}
-          <div className="sometime">
-            <div className="sub-header">
-              <h2>Do Sometime</h2>
-              <button onClick={() => {
-                  this.handleSort();
-                }}>
-                Sort
-              </button>
-            </div>
-            <ul>
-              {this.state.filter
-                ? this.sortRender(this.state.toDoSometimes)
-                : this.defaultRender(this.state.toDoSometimes)}
-            </ul>
-          </div>
-      </div>
-        {/* List to display completedToDo*/}
-        <div className="completed">
-          <h2>Completed</h2>
-          <button onClick={() => this.removeAll()}> Remove All </button>
-          <ul>
-            {this.state.completedToDos.map(completedToDo => {
-              return (<CompletedToDo 
-                key={completedToDo.key} 
-                task={completedToDo.task} />
-              );
-            })}
-          </ul>
-        </div>
+          </div>{/* end of completed */}
+        </div>{/* end of completed-container */}
+      </div> {/* end of wrapper */}   
         <Footer />
-      </div>;  
-  }
+    </div>
+  )}
 }
-
+      
 ReactDOM.render(<App />, document.getElementById('app'));

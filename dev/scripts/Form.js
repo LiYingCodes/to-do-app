@@ -63,7 +63,7 @@ class Form extends React.Component {
     render() {
         return <div>
             {/* Form for getting todo task, user rating of importance of task and also time of input */}
-        <form action="" onSubmit={this.handleSubmit}>
+        <form action="" onSubmit={this.handleSubmit} className="flex">
             <div className="taskInput">
                 <h3>Add To Do:</h3>
                 <p>
@@ -73,9 +73,12 @@ class Form extends React.Component {
             <div className="importance">
                 <h3>Rate how important/urgent?</h3>
                 <div className="button-row">
-                    <button className="btn btn-minus" counter={this.props.counter} onClick={this.handleClickMinus}><i className="fas fa-minus"></i> </button>
-                    <span>{this.props.chores(this.state.counter)}</span>
-                    <button className="btn btn-plus" counter={this.props.counter} onClick={this.handleClickPlus}><i className="fas fa-plus"></i> </button>
+                    <button counter={this.props.counter} onClick={this.handleClickMinus}>
+                        <i className="fas fa-minus"></i> </button>
+                        <span>{this.props.chores(this.state.counter)}</span>
+                    <button counter={this.props.counter} onClick={this.handleClickPlus}>
+                        <i className="fas fa-plus"></i>
+                    </button>
                 </div>
                     <input className="btn" type="submit" value="Add to list!" />
             </div>

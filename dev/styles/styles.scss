@@ -1,5 +1,10 @@
 @import 'setup.scss';
 
+$todo: #FFF1BC;
+$lightGreen: #7DC383;
+$shadowGreen: #6A9C78;
+$darkGreen: #446E5C;
+
 html{
     font-size: 62.5%;
 }
@@ -12,112 +17,18 @@ body{
 }
 
 .wrapper {
-    width: 750px;
-    margin: 1% auto;
-    padding: 1%;
-    border: 5px solid #1D976C;
-    background: #1D976C;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #93F9B9, #1D976C);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #93F9B9, #1D976C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+    width: 1200px;
+    margin: 0 auto;
 }
 
-form {
+.flex {
     display: flex;
-    justify-content: space-between;
-    margin: 0 1%;
-    margin-bottom: 5%; 
-    width: 100%;
-    .taskInput{
-        width: 50%;
-        input[type=text]{
-            width: 95%;
-        }
-    }
-    .importance{
-        width: 50%;
-        justify-content: center;
-        .button-row{
-            justify-content: center;
-        }
-        input[type=submit] {
-            width: 95%;
-        }
-    }
-}
-
-ul{
-    list-style-type: none;
-    text-transform: capitalize;
-    padding: 0;
-}
-
-button {
-    background: none;
-    border: none;
-    margin: 3px;
-    border: 1px solid #1D976C;
-    transition: all 0.5s;
-    &:hover, 
-    &:focus{
-        background: #93F9B9;
-    }
-}
-.todo-container {
-    display: flex;
-    width: 100%;
-    margin-bottom: 5%;
-    .sub-header {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        button {
-            align-self: flex-start;
-        }
-    }
-    .task {
-        display: flex;
-        flex-direction:row;
-        justify-content: space-between;
-    }
-
-    .finish {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-    }
-    .now{
-        width: calc(50% - 1%);
-        padding: 2%;
-        border: 2px dashed #1D976C;
-        margin-right: 1%;
-        background: white;
-    }
-    .sometime{
-        width: calc(50% - 1%);
-        margin-left: 1%;
-        padding: 2%;
-        border: 2px dashed #1D976C;
-        background: white;
-    }
-}
-
-.completed {
-
-    padding: 2%;
-        border: 2px dashed #1D976C;
-
-}
-
-.clipboard {
-    display: inline-block;
-    img, span{
-        padding: 1px;
-    }
 }
 
 h1, h2, h3 {
     font-family: 'Permanent Marker', cursive;
     padding: 0;
+    margin: 0;
 }
 
 h1 {
@@ -131,31 +42,119 @@ h2{
 h3 {
     font-size: 2rem;
     display:inline-block;
-    border-bottom: 4px solid #1D976C;
+    border-bottom: 4px solid $shadowGreen;
 }
 
-
-button {
-    text-align: right;
+.form-chores-container,
+.completed-container {
+    border: 5px solid $shadowGreen;
+    margin: 1% 2%;
+    padding: 2%;
 }
 
-.taskInput {
-    input[type=text] {
-        background: #93F9B9;
-        border: none;
-        border-bottom: 1px solid #1D976C;
-        &:focus, 
-        &:hover {
-            background: #93F9B9;
-            border-bottom: 1px solid black;
+.form-chores-container {
+    width: 70%;
+    background: $todo;    
+}
+
+.completed-container {
+    width: 30%;
+    .completed {
+        background: $todo;
+        button {
+            display: block;
+            width: 100%;
         }
     }
 }
 
+form {
+    justify-content: space-between;
+    margin: 0 1%; 
+    .taskInput,
+    .importance {
+        width: 50%;
+        input {
+            width: 95%;
+            background: $lightGreen;
+            border: none;
+            &:focus, 
+            &:hover {
+                box-shadow: 2px 2px 0px goldenrod;
+            }
+        }
+        input[type=text] {
+            margin-top: 5%;
+            border-bottom: 1px solid $lightGreen;
+        }
+    }
+}
 
+ul{
+    list-style-type: disc;
+    text-transform: capitalize;
+    padding: 0;
+}
+
+button {
+    background:$todo;
+    border: 1px solid $todo;
+    margin: 3px;
+    transition: all 0.5s;
+    &:focus, 
+    &:hover {
+        box-shadow: 2px 2px 0px goldenrod;
+    }
+}
+
+div.btn-sort {
+    justify-content: flex-end;
+    button.btn-sort{
+      align-self: baseline;
+      margin: 2%;
+    }
+}
+
+.todo-container {
+    .task {
+        justify-content: space-between;
+    }
+
+    .finish {
+        justify-content: flex-end;
+    }
+
+    .now, 
+    .sometime {
+        width: calc(50% - 1%);
+        padding: 2%;
+        border: 2px dashed $dullGreen;
+        margin-right: 1%;
+        background: white;
+    }
+
+    .sometime{
+        margin-right: 0;
+        margin-left: 1%;
+    }
+}
+
+
+.clipboard {
+    display: inline-block;
+    img, span{
+        padding: 2px;
+    }
+}
 
 .timestamp {
-    text-align:right; 
+    text-transform: none;
+    text-align: right; 
     color: #444;
     font-size: 1rem; 
+}
+
+.wrapper.footer {
+    justify-content: center;
+    align-items: center;
 }
