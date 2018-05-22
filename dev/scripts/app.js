@@ -159,11 +159,11 @@ class App extends React.Component {
   render() {
     return (
     <div>
+        <div className="header-wrapper wrapper"><Header title="now or later??" /></div>
       <div className="wrapper flex"> 
       {/* wrapper container which contains form-chores-container, completed-container*/}
         <div className="form-chores-container"> 
         {/* contains: header,form,todo-container */}
-          <Header title="now or later" />
           <Form chores={this.chores} />  
           <div className="btn-sort flex">
             <button className="btn-sort" onClick={() => {this.handleSort()}}> Sort </button>

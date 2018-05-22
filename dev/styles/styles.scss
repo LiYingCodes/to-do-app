@@ -27,6 +27,8 @@ body{
     }
 }
 
+
+
 .flex {
     display: flex;
     flex-direction: row;
@@ -85,7 +87,14 @@ h1, h2, h3 {
 h1 {
     font-size: 6rem;
     text-shadow: 3px 3px 3px $dark;
-    @media (max-width: 600px) and (orientation: portrait){
+}
+
+.header-wrapper{
+    margin:0 auto;
+    margin-top: 3%;
+    padding: 0;
+    h1{
+    font-size: 9rem;
     text-align: center;
     }
 }
