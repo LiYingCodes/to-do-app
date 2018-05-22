@@ -11,7 +11,8 @@ class TimeElapsed extends React.Component {
         this.timeElapsed = this.timeElapsed.bind(this);
     }
 
-
+    //function to calculate difference between current time and input time
+    //convert the difference which is in milliseconds into seconds, minutes, hours or days  
     timeElapsed(){
         const currentTime = new Date().getTime();
         const timeInMs = currentTime - this.props.inputTime;

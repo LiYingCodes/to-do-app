@@ -1,144 +1,71 @@
 @import 'setup.scss';
 
-$todo: #FFF1BC;
-$lightGreen: #7DC383;
-$shadowGreen: #6A9C78;
-$darkGreen: #446E5C;
+$todo: linear-gradient(to top, #ffcc33, #ffb347);
+$white:#fcf7f8;
+$light:#ffb347;
+$dark: #FF512F;
+$completed: linear-gradient(to bottom, #F09819, #FF512F);
 
+// GENERAL STYLES
 html{
     font-size: 62.5%;
 }
 
 body{
     font-family: 'Domine', serif;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    line-height: 1.2;
     background: url("../../doodles.png");
-
 }
 
 .wrapper {
-    width: 1200px;
-    margin: 0 auto;
+    max-width: 1200px;
+    margin: 3% auto;
+    @media (max-width: 1200px){
+        flex-direction: column;
+        flex-wrap:wrap;
+    }
 }
 
 .flex {
     display: flex;
-}
-
-h1, h2, h3 {
-    font-family: 'Permanent Marker', cursive;
-    padding: 0;
-    margin: 0;
-}
-
-h1 {
-    font-size: 6rem;
-}
-
-h2{
-    font-size: 4rem;
-}
-
-h3 {
-    font-size: 2rem;
-    display:inline-block;
-    border-bottom: 4px solid $shadowGreen;
-}
-
-.form-chores-container,
-.completed-container {
-    border: 5px solid $shadowGreen;
-    margin: 1% 2%;
-    padding: 2%;
-}
-
-.form-chores-container {
-    width: 70%;
-    background: $todo;    
-}
-
-.completed-container {
-    width: 30%;
-    .completed {
-        background: $todo;
-        button {
-            display: block;
-            width: 100%;
-        }
-    }
-}
-
-form {
-    justify-content: space-between;
-    margin: 0 1%; 
-    .taskInput,
-    .importance {
-        width: 50%;
-        input {
-            width: 95%;
-            background: $lightGreen;
-            border: none;
-            &:focus, 
-            &:hover {
-                box-shadow: 2px 2px 0px goldenrod;
-            }
-        }
-        input[type=text] {
-            margin-top: 5%;
-            border-bottom: 1px solid $lightGreen;
-        }
-    }
+    flex-direction: row;
+    
 }
 
 ul{
-    list-style-type: disc;
+    list-style-type: none;
     text-transform: capitalize;
     padding: 0;
 }
 
+.fw {
+    margin:0 5px;
+}
+
+input[type=submit],
 button {
-    background:$todo;
-    border: 1px solid $todo;
+    background:$white;
+    border: 1px solid $dark;
+    height: 30px;
     margin: 3px;
     transition: all 0.5s;
+    box-shadow: 2px 2px 0px $dark;
     &:focus, 
     &:hover {
-        box-shadow: 2px 2px 0px goldenrod;
+        box-shadow: 3px 3px 0px $dark;
+        background: lighten($light, 20%);
     }
 }
 
 div.btn-sort {
-    justify-content: flex-end;
+    justify-content: center;
     button.btn-sort{
+        width: 50%;
       align-self: baseline;
       margin: 2%;
     }
 }
-
-.todo-container {
-    .task {
-        justify-content: space-between;
-    }
-
-    .finish {
-        justify-content: flex-end;
-    }
-
-    .now, 
-    .sometime {
-        width: calc(50% - 1%);
-        padding: 2%;
-        border: 2px dashed $dullGreen;
-        margin-right: 1%;
-        background: white;
-    }
-
-    .sometime{
-        margin-right: 0;
-        margin-left: 1%;
-    }
-}
-
 
 .clipboard {
     display: inline-block;
@@ -147,14 +74,214 @@ div.btn-sort {
     }
 }
 
-.timestamp {
-    text-transform: none;
-    text-align: right; 
-    color: #444;
-    font-size: 1rem; 
+// TITLE STYLES
+h1, h2, h3 {
+    font-family: 'Permanent Marker', cursive;
+    padding: 0;
+    margin: 0;
+    text-shadow: 3px 3px 2px $light;
 }
 
+h1 {
+    font-size: 6rem;
+    text-shadow: 3px 3px 3px $dark;
+    @media (max-width: 414px) and (orientation: portrait){
+    text-align: center;
+    }
+}
+
+.completed-container h1{
+    text-shadow: 3px 3px 3px $light;
+}
+
+h2{
+    font-size: 4rem;
+}
+
+h3 {
+    font-size: 2.5rem;
+    text-align: center;
+    text-shadow: 2px 2px 1px $dark;
+    @media (max-width: 414px) and (orientation: portrait){ 
+        text-align: left;
+    }
+    @media (max-width: 533px) and (orientation: landscape){
+        text-align: left;
+        font-size: 2.2rem;
+    }
+}
+
+h3::after{
+    content:"_______";
+    position: absolute;
+    left: 30%;
+    top: 15%;
+    @media (max-width: 1200px){
+        left: 40%;
+    }
+    @media (max-width: 414px) and (orientation: portrait), (max-width: 533px) and (orientation: landscape){
+        left: 7%;
+    }
+}
+
+.importance h3::after{
+   @media (max-width: 414px) and (orientation: portrait), (max-width: 533px) and (orientation: landscape){
+        content:"_____________";
+    }
+}
+
+
+//FORM STYLES FOR INPUT AND TWO CONTAINERS FOR NOW AND LATER
+.form-chores-container,
+.completed-container {
+    border: 5px solid $light;
+    margin: 1% 2%;
+    padding: 2%;
+    box-shadow: 5px 5px 0 $dark;
+}
+
+.form-chores-container {
+    width: 70%;
+    background: $todo;
+    @media (max-width: 1200px) {
+        width: 100%;
+    }
+    form {
+        justify-content: flex-start;
+        margin: 0 1%; 
+        padding-bottom: 2%;
+        border-bottom: 4px solid $dark;
+        @media (max-width: 580px) and (orientation: portrait) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        @media (max-width: 414px) and (orientation: portrait) {
+            align-items: flex-start;
+            justify-content: flex-start;        
+        }
+        .taskInput,
+        .importance {
+            @media (max-width: 580px) and (orientation: portrait){
+                clear:both;
+                min-width: 50%;
+            }
+            @media (max-width: 414px) and (orientation: portrait){
+                padding:0;
+                margin: 0;
+                width: 100%;
+            }
+
+            position: relative;
+            float: left;
+            width: 50%;
+            input[type=text] {
+                border-bottom: 1px solid $white;
+                width: 98%;
+                height: 30px;
+                background: $white;
+                border: none;
+                transition: all 0.3s;
+                margin-top: 3%;
+                &:focus, 
+                &:hover {
+                    box-shadow: 0px 0px 10px $dark;
+                    background: lighten($light, 20%);
+                }
+            }
+        }
+        .button-row{
+            justify-content: space-evenly;
+            padding: 3%;
+            margin-top: 3%;
+        }
+
+        .btn{
+            clear:both;
+            width: 50%;
+            margin-left: 25%;
+            @media (max-width: 580px) and (orientation: portrait){
+                clear:both;
+                margin:0;
+            }
+            @media (max-width: 414px) and (orientation: portrait){
+                margin-left: 25%;
+            }
+        }
+    }
+    
+    .todo-container {
+        @media (max-width: 680px) and (orientation: portrait){
+        flex-direction: column;
+        flex-wrap:wrap;
+        }
+        .task {
+            justify-content: space-between;
+        }
+
+        .finish {
+            justify-content: flex-end;
+        }
+
+        .now, 
+        .sometime {
+            width: calc(50% - 1%);
+            padding: 2%;
+            border: 2px dashed $dark;
+            margin-right: 1%;
+            background: white;
+            @media (max-width: 680px) {
+                width: calc(100% - 1%);
+                margin-bottom: 3%;
+            }
+        }
+
+        .sometime{
+            margin-right: 0;
+            margin-left: 1%;
+        }
+        .timestamp {
+            text-transform: none;
+            text-align: right; 
+            color: #444;
+            font-size: 1rem; 
+        }
+    }
+}
+
+//FORM STYLES FOR COMPLETED CONTANER
+.completed-container {
+    width: 30%;
+    background: $completed;
+    border: 5px solid $dark;
+    box-shadow: 5px 5px 0 $light;
+    @media (max-width: 1200px) {
+        width: 100%;
+    }
+    button {
+        display: block;
+        width: 50%;
+        margin-left: 25%;
+        box-shadow: 2px 2px 0px $light;
+        &:focus, 
+        &:hover {
+            box-shadow: 3px 3px 0px $light;
+        }
+    }
+    .completed {
+        margin-top: 5%;
+        background: $white;
+        border: 2px dashed $dark;
+    }
+}
+
+
+// FOOTER STYLES
 .wrapper.footer {
     justify-content: center;
     align-items: center;
+    text-align: center;
+    border-top: 1px solid black;
+    margin-top: 3%;
 }

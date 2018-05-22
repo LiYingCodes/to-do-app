@@ -71,8 +71,10 @@ class App extends React.Component {
          })
       });
     }
+    // 3, 4 is in Component Form.js
 
-  // 5 SORT BUTTON
+  // 5 SORT BUTTON -- TIED TO no.9 (render functions)
+  // funtion checks the state of filter and flips it. If true, it will show make it false and vice versa.
   handleSort(){
     this.setState({
       filter: !this.state.filter
@@ -92,7 +94,7 @@ class App extends React.Component {
     }))
   }
   
-  // 7 COMPLETED STUFF
+  // 7 MARKING TASKS AS COMPLETED
   markAsComplete(itemComplete, completed){
       firebase
       .database()
@@ -102,66 +104,20 @@ class App extends React.Component {
       });
   }
 
-  // CHANGING COUNTER TO DISPLAY ICON
+  // 8 CHANGING COUNTER TO DISPLAY ICONS INSTEAD OF A NUMBER
   chores(counter){
-      if (counter === 1) {
-        return <div className="clipboard">
-            <img src="clipboard-b.png" />
-            <img src="clipboard-g.png" />
-            <img src="clipboard-g.png" />
-            <img src="clipboard-g.png" />
-            <img src="clipboard-g.png" />
-            <span>(1)</span>
-          </div>;
-        } else if (counter === 2) {
-        return <div className="clipboard">
-            <img src="clipboard-b.png" />
-            <img src="clipboard-b.png" />
-            <img src="clipboard-g.png" />
-            <img src="clipboard-g.png" />
-            <img src="clipboard-g.png" />
-            <span>(2)</span>
-          </div>
-        } else if (counter === 3) {
-        return <div className="clipboard">
-            <img src="clipboard-b.png" />
-            <img src="clipboard-b.png" />
-            <img src="clipboard-b.png" />
-            <img src="clipboard-g.png" />
-            <img src="clipboard-g.png" />
-            <span>(3)</span>
-          </div>
-        } else if (counter === 4) {
-        return <div className="clipboard">
-            <img src="clipboard-b.png" />
-            <img src="clipboard-b.png" />
-            <img src="clipboard-b.png" />
-            <img src="clipboard-b.png" />
-            <img src="clipboard-g.png" />
-            <span>(4)</span>
-          </div>;
-        } else if (counter === 5) {
-        return <div className="clipboard">
-            <img src="clipboard-b.png" />
-            <img src="clipboard-b.png" />
-            <img src="clipboard-b.png" />
-            <img src="clipboard-b.png" />
-            <img src="clipboard-b.png" />
-            <span>(5)</span>
-          </div>;
-        } else {
-        return <div className="clipboard">
-            <img src="clipboard-g.png" />
-            <img src="clipboard-g.png" />
-            <img src="clipboard-g.png" />
-            <img src="clipboard-g.png" />
-            <img src="clipboard-g.png" />
-            <span>(0)</span>
-          </div>;
-      }
+      return (
+        <div>
+          {(counter < 1) ? <img src="clipboard-g.png" /> : <img src="clipboard-b.png" />} 
+          {(counter < 2) ? <img src="clipboard-g.png" /> : <img src="clipboard-b.png" />}
+          {(counter < 3) ? <img src="clipboard-g.png" /> : <img src="clipboard-b.png" />}
+          {(counter < 4) ? <img src="clipboard-g.png" /> : <img src="clipboard-b.png" />} 
+          {(counter < 5) ? <img src="clipboard-g.png" /> : <img src="clipboard-b.png" />}       
+        </div>
+      )
     }
 
-  // RENDER FUNCTIONS
+  //9 RENDER FUNCTIONS (FOR SORTED ITEMS VS. DEFAULT)
   defaultRender(array) {
     return(
       array.map(toDoNow => {
@@ -223,7 +179,7 @@ class App extends React.Component {
             </div> {/* end of now */}
     
             <div className="sometime">
-              <h2>Sometime Later:</h2>
+              <h2>Later:</h2>
               <ul>
                 {this.state.filter
                   ? this.sortRender(this.state.toDoSometimes)

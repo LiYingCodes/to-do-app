@@ -6,7 +6,7 @@ class Form extends React.Component {
         super();
         this.state = {
             task:'',
-            counter: 0,
+            counter: 1,
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);           
@@ -23,10 +23,10 @@ class Form extends React.Component {
     handleClickMinus(e) {
         e.preventDefault();
         this.setState({ counter: this.state.counter - 1 })
-        this.state.counter === 0 ? this.setState({ counter: this.state.counter - 0 }) : null;
+        this.state.counter === 1 ? this.setState({ counter: this.state.counter - 0 }) : null;
     }
 
-
+    // EVENTS TO HAPPEN WHEN FORM IS SUBMITTED
     handleSubmit(e) {
         e.preventDefault();
         // create variable with current state of things we want to keep track of in no.1
@@ -37,8 +37,7 @@ class Form extends React.Component {
             inputTime: new Date().getTime(),
             completed: false
         }
-        // ALSO PUSH TIME OF INPUT so that we can compare the now time vs. time of input later
-        // console.log(todo);
+        // push time of input so that we can compare the now time vs. time of input later
         
         // create reference to firebase
         const dbRef = firebase.database().ref('todos');
@@ -63,16 +62,16 @@ class Form extends React.Component {
     render() {
         return <div>
             {/* Form for getting todo task, user rating of importance of task and also time of input */}
-        <form action="" onSubmit={this.handleSubmit} className="flex">
+        <form action="" onSubmit={this.handleSubmit} className="clearfix">
             <div className="taskInput">
-                <h3>Add To Do:</h3>
+                <h3>1. Add To Do:</h3>
                 <p>
                     <input type="text" value={this.state.task} onChange={this.handleChange} placeholder="Input task here!"/>
                 </p>
             </div>
             <div className="importance">
-                <h3>Rate how important/urgent?</h3>
-                <div className="button-row">
+                <h3>2. How urgent is it?</h3>
+                <div className="button-row flex">
                     <button counter={this.props.counter} onClick={this.handleClickMinus}>
                         <i className="fas fa-minus"></i> </button>
                         <span>{this.props.chores(this.state.counter)}</span>
@@ -80,8 +79,8 @@ class Form extends React.Component {
                         <i className="fas fa-plus"></i>
                     </button>
                 </div>
-                    <input className="btn" type="submit" value="Add to list!" />
             </div>
+            <input className="btn" type="submit" value="Add to list!" />
         </form>
     </div>}
 }

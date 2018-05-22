@@ -2,12 +2,15 @@ import React from 'react'
 import TimeElapsed from './TimeElapsed'
 
 
-{/* List to display toDoNows */ }
+{/* List to display todos*/ }
 const Todo = (props) => {
     console.log(props.counter);
     return <li>
         <div className="task flex">
-          <span>{props.task}</span>
+          <span>
+            <i class="fas fa-thumbtack fw" />
+            {props.task}
+          </span>
           <span>{props.chores(props.counter)}</span>
         </div>
         <div className="finish flex">
