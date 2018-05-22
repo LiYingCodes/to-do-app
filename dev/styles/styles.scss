@@ -85,7 +85,7 @@ h1, h2, h3 {
 h1 {
     font-size: 6rem;
     text-shadow: 3px 3px 3px $dark;
-    @media (max-width: 414px) and (orientation: portrait){
+    @media (max-width: 600px) and (orientation: portrait){
     text-align: center;
     }
 }
@@ -102,7 +102,7 @@ h3 {
     font-size: 2.5rem;
     text-align: center;
     text-shadow: 2px 2px 1px $dark;
-    @media (max-width: 414px) and (orientation: portrait){ 
+    @media (max-width: 600px) and (orientation: portrait){ 
         text-align: left;
     }
     @media (max-width: 533px) and (orientation: landscape){
@@ -119,13 +119,13 @@ h3::after{
     @media (max-width: 1200px){
         left: 40%;
     }
-    @media (max-width: 414px) and (orientation: portrait), (max-width: 533px) and (orientation: landscape){
+    @media (max-width: 600px) and (orientation: portrait), (max-width: 533px) and (orientation: landscape){
         left: 7%;
     }
 }
 
 .importance h3::after{
-   @media (max-width: 414px) and (orientation: portrait), (max-width: 533px) and (orientation: landscape){
+   @media (max-width: 600px) and (orientation: portrait), (max-width: 533px) and (orientation: landscape){
         content:"_____________";
     }
 }
@@ -157,7 +157,7 @@ h3::after{
             align-items: center;
             justify-content: center;
         }
-        @media (max-width: 414px) and (orientation: portrait) {
+        @media (max-width: 600px) and (orientation: portrait) {
             align-items: flex-start;
             justify-content: flex-start;        
         }
@@ -167,7 +167,7 @@ h3::after{
                 clear:both;
                 min-width: 50%;
             }
-            @media (max-width: 414px) and (orientation: portrait){
+            @media (max-width: 600px) and (orientation: portrait){
                 padding:0;
                 margin: 0;
                 width: 100%;
@@ -205,7 +205,7 @@ h3::after{
                 clear:both;
                 margin:0;
             }
-            @media (max-width: 414px) and (orientation: portrait){
+            @media (max-width: 600px) and (orientation: portrait){
                 margin-left: 25%;
             }
         }
