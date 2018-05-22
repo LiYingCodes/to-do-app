@@ -53,7 +53,6 @@ class Form extends React.Component {
 
     // 4 LISTEN FOR CHANGE IN INPUT FIELD
     handleChange(e){
-        console.log(e.target.value);
         this.setState({
             task: e.target.value
         })
