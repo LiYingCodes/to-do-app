@@ -108,7 +108,7 @@ class App extends React.Component {
   chores(counter){
       return (
         <div>
-          {(counter < 1) ? <img src="clipboard-g.png" /> : <img src="clipboard-b.png" />} 
+          {(counter < 1) ? <img src="clipboard-b.png" /> : <img src="clipboard-b.png" />} 
           {(counter < 2) ? <img src="clipboard-g.png" /> : <img src="clipboard-b.png" />}
           {(counter < 3) ? <img src="clipboard-g.png" /> : <img src="clipboard-b.png" />}
           {(counter < 4) ? <img src="clipboard-g.png" /> : <img src="clipboard-b.png" />} 
