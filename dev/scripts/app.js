@@ -159,15 +159,12 @@ class App extends React.Component {
   render() {
     return (
     <div>
-        <div className="header-wrapper wrapper"><Header title="now or later??" /></div>
+      <div className="header-wrapper wrapper"><Header title="now or later??" /></div>
+      <div className="wrapper form"> <Form chores={this.chores} /> </div>
       <div className="wrapper flex"> 
-      {/* wrapper container which contains form-chores-container, completed-container*/}
-        <div className="form-chores-container"> 
+      {/* wrapper container which contains chores-container, completed-container*/}
+        <div className="chores-container"> 
         {/* contains: header,form,todo-container */}
-          <Form chores={this.chores} />  
-          <div className="btn-sort flex">
-            <button className="btn-sort" onClick={() => {this.handleSort()}}> Sort </button>
-          </div> {/* end of btn-sort container */}
           <div className="todo-container flex">
             <div className="now">
               <h2>Now:</h2>
@@ -186,13 +183,16 @@ class App extends React.Component {
                   : this.defaultRender(this.state.toDoSometimes)}
               </ul>
             </div>{/* end of sometime */}
+
           </div> {/* end of todo-container */}
-        </div>{/* end of form-chores-container */}
+            <div className="btn-sort flex">
+              <button className="btn-sort" onClick={() => { this.handleSort() }}> Sort </button>
+            </div> {/* end of btn-sort container */}
+        </div>{/* end of chores-container */}
 
         <div className="completed-container">  
-            <Header title="completed" />
-            <button onClick={() => this.removeAll()}> Remove All </button>
           <div className="completed">
+            <h2>Completed:</h2>
             <ul>
               {this.state.completedToDos.map(completedToDo => {
                 return (<CompletedToDo 
@@ -201,6 +201,7 @@ class App extends React.Component {
                 );
               })}
             </ul>
+            <button onClick={() => this.removeAll()}> Remove All </button>
           </div>{/* end of completed */}
         </div>{/* end of completed-container */}
       </div> {/* end of wrapper */}   

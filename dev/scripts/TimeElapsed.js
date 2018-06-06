@@ -15,20 +15,18 @@ class TimeElapsed extends React.Component {
     //convert the difference which is in milliseconds into seconds, minutes, hours or days  
     timeElapsed(){
         const currentTime = new Date().getTime();
+
         const timeInMs = currentTime - this.props.inputTime;
-        const timeInSeconds = Math.floor(timeInMs / 1000);
-        const timeInMinutes = Math.floor(timeInSeconds / 60);
-        const timeInHours = Math.floor(timeInMinutes / 60);
-        const timeInDays = Math.floor(timeInHours / 24)
-        if (timeInSeconds < 60){
-            return timeInSeconds + ' second(s) ago'
-        } else if (timeInMinutes < 60) {
-            return timeInMinutes + ' minute(s) ago'
-        } else if (timeInHours < 24) {
-            return timeInHours + ' hour(s) ago' 
-        } else {
-            return timeInDays + ' day(s) ago'
-        }
+        let timeInSeconds = Math.floor(timeInMs / 1000);
+        let timeInMinutes = Math.floor(timeInSeconds / 60);
+        let timeInHours = Math.floor(timeInMinutes / 60);
+        let timeInDays = Math.floor(timeInHours / 24)
+        timeInHours = timeInHours % 24;
+        timeInMinutes = timeInMinutes % 60;
+        timeInSeconds = timeInSeconds % 60;
+
+        return (
+            <p>{timeInDays} days {timeInHours} hours {timeInMinutes} minutes {timeInSeconds} seconds ago</p>)
     }
     
     render() {
