@@ -24,9 +24,10 @@ class TimeElapsed extends React.Component {
         timeInHours = timeInHours % 24;
         timeInMinutes = timeInMinutes % 60;
         timeInSeconds = timeInSeconds % 60;
-
-        return (
-            <p>{timeInDays} days {timeInHours} hours {timeInMinutes} minutes {timeInSeconds} seconds ago</p>)
+        
+        return (            
+            timeInDays === 0 ? <p>{timeInHours} hour(s) {timeInMinutes} minute(s) ago</p> : <p>{timeInDays} day(s) {timeInHours} hour(s) ago</p>
+        )
     }
     
     render() {
